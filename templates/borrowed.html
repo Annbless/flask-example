@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% extends "bootstrap/base.html" %}
+{% block title %}Flasky{% endblock %}
+{% block navbar %}
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<ul class="nav nav-tabs">
+				<li>
+					 <a href="/index">查询</a>
+				</li>
+				<li class = active>
+					 <a href="/borrowed">归还</a>
+				</li>
+                {% if current_user.is_authenticated and current_user.status == 0%}
+				<li>
+					 <a href="/buy">购买</a>
+				</li>
+                <li>
+					 <a href="/query">统计</a>
+				</li>
+                {% endif %}
+				{% if current_user.is_authenticated %}
+				<li class="pull-right">
+					 <a href="/login" >退出<strong class="caret"></strong></a>
+				</li>
+                {% else %}
+                <li class="pull-right">
+					 <a href="/logout" >登陆<strong class="caret"></strong></a>
+				</li>
+                {% endif %}
+			</ul>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block content %}
+   <div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>
+							编号
+						</th>
+						<th>
+							书名
+						</th>
+						<th>
+							作者
+						</th>
+                        <th>
+							操作
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+                {% for book in booklist %}
+					<tr class="info_content">
+						<td>
+							{{ book[0] }}
+						</td>
+						<td>
+							{{ book[1] }}
+						</td>
+						<td>
+							{{ book[2] }}
+						</td>
+                        <td>
+                            <a href = "{{ url_for('reload', bookid = book[0]) }}" ><button type="button" class="btn btn-default" >归还</button> </a>
+						</td>
+					</tr>
+                {% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock %}

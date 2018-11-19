@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% extends "bootstrap/base.html" %}
+{% block title %}Flasky{% endblock %}
+{% block navbar %}
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<ul class="nav nav-tabs">
+				<li class="active">
+					 <a href="/login">登陆</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+            {% import 'bootstrap/wtf.html' as wtf %}
+            <div align="center">
+                <form class = "form" method="POST">
+                    {{ form.hidden_tag() }}
+                    {{ wtf.quick_form(form)}}
+                </form>
+            </div>
+		</div>
+	</div>
+</div>
+{% endblock %}

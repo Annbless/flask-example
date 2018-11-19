@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% extends "bootstrap/base.html" %}
+{% block title %}Flasky{% endblock %}
+{% block navbar %}
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<ul class="nav nav-tabs">
+				<li>
+					 <a href="/index">查询</a>
+				</li>
+				<li>
+					 <a href="/borrowed">归还</a>
+				</li>
+				<li class = active>
+					 <a href="/buy">购买</a>
+				</li>
+                <li>
+					 <a href="/query">统计</a>
+				</li>
+				{% if current_user.is_authenticated %}
+				<li class="pull-right">
+					 <a href="/login" >退出<strong class="caret"></strong></a>
+				</li>
+                {% else %}
+                <li class="pull-right">
+					 <a href="/logout" >登陆<strong class="caret"></strong></a>
+				</li>
+                {% endif %}
+			</ul>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+            {% import 'bootstrap/wtf.html' as wtf %}
+            <div align="center">
+                <form class = "form" method="POST">
+                    {{ wtf.quick_form(form)}}
+                </form>
+            </div>
+		</div>
+	</div>
+</div>
+{% endblock %}

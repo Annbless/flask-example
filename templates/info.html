@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% extends "bootstrap/base.html" %}
+{% block title %}Flasky{% endblock %}
+{% block navbar %}
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<ul class="nav nav-tabs">
+				<li class="active">
+					 <a href="#">详情</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column" align="center">
+            <img src = {{ image }}>
+		</div>
+	</div>
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+            <h1>
+				Summary
+			</h1>
+            <p>
+				{{ summary }}
+			</p>
+		</div>
+	</div>
+</div>
+{% endblock %}
